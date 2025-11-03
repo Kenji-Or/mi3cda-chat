@@ -1,0 +1,15 @@
+<div>
+
+    {% if app.user %}
+    <a href="{{ path("app_messages") }}">Messages</a>
+    <a href="{{ path("app_logout") }}">logout</a>
+
+    {% else %}
+
+    <a href="{{ path("app_register") }}">Register</a>
+    <a href="{{ path("app_login") }}">login</a>
+
+    {% endif %}
+
+
+</div>

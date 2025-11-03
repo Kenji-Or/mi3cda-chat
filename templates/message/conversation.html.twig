@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for message in conversation.messages %}
+
+        <p><strong>{{ message.author.email }} said : </strong>
+        {{ message.content }}
+        </p>
+
+
+    {% endfor %}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

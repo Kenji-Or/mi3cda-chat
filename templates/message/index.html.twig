@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MessageController!{% endblock %}
+
+{% block body %}
+
+
+    <h3>Conversations</h3>
+
+    <h4>As A</h4>
+    {% for conversation in convsA %}
+
+        <p>chat with {{ conversation.userB.email }}</p>
+
+    {% endfor %}
+    <h4>As B</h4>
+    {% for conversation in convsB %}
+
+        <a>chat with {{ conversation.userA.email }}</a>
+
+    {% endfor %}
+
+    <h3>Users</h3>
+
+    {% for user in otherUsers %}
+
+        <p>start chatting with {{ user.email() }}</p>
+
+
+    {% endfor %}
+{% endblock %}
