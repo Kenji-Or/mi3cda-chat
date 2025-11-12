@@ -2,17 +2,25 @@
 
 {% block body %}
 
+    <div id="messages" {{ turbo_stream_listen('conversations/'~conversation.id) }}>
+
     {% for message in conversation.messages %}
 
-        <p><strong>{{ message.author.email }} said : </strong>
-        {{ message.content }}
-        </p>
-
+        <twig:Message :message="message"></twig:Message>
 
     {% endfor %}
+    </div>
+
+    <hr>
+    <turbo-frame id="message_form">
+        {{ form_start(form) }}
+        {{ form_widget(form.content) }}
+        <button type="submit">post</button>
+        {{ form_end(form) }}
+    </turbo-frame>
 {% endblock %}
+
 
 {% block title %}
 
 {% endblock %}
-

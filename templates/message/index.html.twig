@@ -10,22 +10,27 @@
     <h4>As A</h4>
     {% for conversation in convsA %}
 
-        <p>chat with {{ conversation.userB.email }}</p>
+        <a href="{{ path("app_conversation", {id:conversation.id}) }}">chat with {{ conversation.userB.email }}</a>
 
     {% endfor %}
     <h4>As B</h4>
     {% for conversation in convsB %}
 
-        <a>chat with {{ conversation.userA.email }}</a>
+        <a href="{{ path("app_conversation", {id:conversation.id}) }}">chat with {{ conversation.userA.email }}</a>
 
     {% endfor %}
 
-    <h3>Users</h3>
+    <h3>Start a new conversation</h3>
 
-    {% for user in otherUsers %}
-
-        <p>start chatting with {{ user.email() }}</p>
-
-
-    {% endfor %}
+    {% if otherUsers|length > 0 %}
+            {% for user in otherUsers %}
+                <div>
+                    <a href="{{ path('app_conversation_check', {id: user.id}) }}">
+                        Chat with {{ user.email }}
+                    </a>
+                </div>
+            {% endfor %}
+    {% else %}
+        <p>You already have conversations with all users.</p>
+    {% endif %}
 {% endblock %}
