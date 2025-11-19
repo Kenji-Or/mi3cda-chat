@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="config cors">
-      <change beforePath="$PROJECT_DIR$/.idea/mi3cda-chat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mi3cda-chat.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Add bootstrap">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/importmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/importmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/Message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/Message.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/message/conversation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/conversation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/message/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar/nav.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +227,7 @@
       <workItem from="1762933475717" duration="11159000" />
       <workItem from="1763105774065" duration="7114000" />
       <workItem from="1763503002869" duration="141000" />
-      <workItem from="1763586524712" duration="4443000" />
+      <workItem from="1763586524712" duration="4928000" />
     </task>
     <task id="LOCAL-00001" summary="add security part 1">
       <option name="closed" value="true" />
@@ -257,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763588563001</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add bootstrap">
+      <option name="closed" value="true" />
+      <created>1763591272310</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763591272310</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +262,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add security part 1" />
     <MESSAGE value="config cors" />
-    <option name="LAST_COMMIT_MESSAGE" value="config cors" />
+    <MESSAGE value="Add bootstrap" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add bootstrap" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
