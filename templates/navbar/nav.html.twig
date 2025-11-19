@@ -1,15 +1,45 @@
-<div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_messages') }}">
+            <i class="fas fa-comments me-2"></i>Chat App
+        </a>
 
-    {% if app.user %}
-    <a href="{{ path("app_messages") }}">Messages</a>
-    <a href="{{ path("app_logout") }}">logout</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    {% else %}
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path("app_messages") }}">
+                            <i class="fas fa-envelope me-1"></i>Messages
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i>{{ app.user.userIdentifier }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ path("app_logout") }}">
+                                <i class="fas fa-sign-out-alt me-1"></i>Déconnexion
+                            </a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path("app_register") }}">
+                            <i class="fas fa-user-plus me-1"></i>S'inscrire
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light ms-2" href="{{ path("app_login") }}">
+                            <i class="fas fa-sign-in-alt me-1"></i>Connexion
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <a href="{{ path("app_register") }}">Register</a>
-    <a href="{{ path("app_login") }}">login</a>
-
-    {% endif %}
-
-
-</div>

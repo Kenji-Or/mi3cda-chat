@@ -1,19 +1,72 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<div class="container-fluid bg-light d-flex align-items-center" style="min-height: calc(100vh - 60px);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h1 class="h3 mb-0">
+                            <i class="fas fa-user-plus me-2"></i>Créer un compte
+                        </h1>
+                    </div>
+                    <div class="card-body p-4">
+                        {% if form_errors(registrationForm) %}
+                            <div class="alert alert-danger">
+                                {{ form_errors(registrationForm) }}
+                            </div>
+                        {% endif %}
 
-    {{ form_errors(registrationForm) }}
+                        {{ form_start(registrationForm, {'attr': {'class': 'needs-validation', 'novalidate': true}}) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.email, 'Adresse email', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'votre@email.com'}}) }}
+                                {{ form_errors(registrationForm.email) }}
+                            </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                            <div class="mb-3">
+                                {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Mot de passe sécurisé'}}) }}
+                                {{ form_errors(registrationForm.plainPassword) }}
+                                <div class="form-text">
+                                    <small class="text-muted">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Le mot de passe doit contenir au moins 8 caractères
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                                    {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                </div>
+                                {{ form_errors(registrationForm.agreeTerms) }}
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-user-plus me-2"></i>Créer mon compte
+                                </button>
+                            </div>
+                        {{ form_end(registrationForm) }}
+
+                        <div class="text-center mt-4">
+                            <p class="text-muted">
+                                Déjà inscrit ?
+                                <a href="{{ path('app_login') }}" class="text-decoration-none fw-semibold">
+                                    Se connecter
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

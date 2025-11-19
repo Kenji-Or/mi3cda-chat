@@ -1,37 +1,148 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MessageController!{% endblock %}
+{% block title %}Mes Conversations{% endblock %}
 
 {% block body %}
-
-
-    <h3>Conversations</h3>
-
-    <h4>As A</h4>
-    {% for conversation in convsA %}
-    <div>
-        <a href="{{ path("app_conversation", {id:conversation.id}) }}">chat with {{ conversation.userB.email }}</a>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- En-tête de la page -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 text-dark">
+                    <i class="fas fa-comments me-3 text-primary"></i>Mes Conversations
+                </h1>
+                <span class="badge bg-secondary fs-6">
+                    {{ (convsA|length + convsB|length) }} conversation(s)
+                </span>
+            </div>
+        </div>
     </div>
-    {% endfor %}
-    <h4>As B</h4>
-    {% for conversation in convsB %}
 
-    <div>
-        <a href="{{ path("app_conversation", {id:conversation.id}) }}">chat with {{ conversation.userA.email }}</a>
-    </div>
-    {% endfor %}
-
-    <h3>Start a new conversation</h3>
-
-    {% if otherUsers|length > 0 %}
-            {% for user in otherUsers %}
-                <div>
-                    <a href="{{ path('app_conversation_check', {id: user.id}) }}">
-                        Chat with {{ user.email }}
-                    </a>
+    <div class="row">
+        <!-- Section des conversations existantes -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-inbox me-2"></i>Conversations Actives
+                    </h5>
                 </div>
-            {% endfor %}
-    {% else %}
-        <p>You already have conversations with all users.</p>
-    {% endif %}
+                <div class="card-body p-0">
+                    {% if convsA|length > 0 or convsB|length > 0 %}
+                        <div class="list-group list-group-flush">
+                            {% for conversation in convsA %}
+                                <a href="{{ path("app_conversation", {id:conversation.id}) }}"
+                                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle bg-success text-white me-3">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold">{{ conversation.userB.email }}</h6>
+                                            <small class="text-muted">
+                                                <i class="fas fa-arrow-right me-1"></i>Conversation initiée
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-muted"></i>
+                                </a>
+                            {% endfor %}
+
+                            {% for conversation in convsB %}
+                                <a href="{{ path("app_conversation", {id:conversation.id}) }}"
+                                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle bg-info text-white me-3">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold">{{ conversation.userA.email }}</h6>
+                                            <small class="text-muted">
+                                                <i class="fas fa-arrow-left me-1"></i>Conversation reçue
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-muted"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-comments fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">Aucune conversation</h5>
+                            <p class="text-muted">Commencez une nouvelle conversation ci-dessous</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Section pour démarrer une nouvelle conversation -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Nouvelle Conversation
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if otherUsers|length > 0 %}
+                        <p class="text-muted mb-3">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Sélectionnez un utilisateur pour commencer une conversation
+                        </p>
+                        <div class="list-group">
+                            {% for user in otherUsers %}
+                                <a href="{{ path('app_conversation_check', {id: user.id}) }}"
+                                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle bg-secondary text-white me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <span class="fw-semibold">{{ user.email }}</span>
+                                    </div>
+                                    <i class="fas fa-plus text-success"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
+                            <h6 class="text-success">Parfait !</h6>
+                            <p class="text-muted small mb-0">
+                                Vous avez déjà des conversations avec tous les utilisateurs disponibles.
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.list-group-item-action:hover {
+    background-color: #f8f9fa;
+    transform: translateX(2px);
+    transition: all 0.2s ease;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+}
+</style>
 {% endblock %}

@@ -1,26 +1,145 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-
-    <div id="messages" {{ turbo_stream_listen('conversations/'~conversation.id, 'default', {withCredentials:true}) }}>
-
-    {% for message in conversation.messages %}
-
-        <twig:Message :message="message"></twig:Message>
-
-    {% endfor %}
-    </div>
-
-    <hr>
-    <turbo-frame id="message_form">
-        {{ form_start(form) }}
-        {{ form_widget(form.content) }}
-        <button type="submit">post</button>
-        {{ form_end(form) }}
-    </turbo-frame>
+{% block title %}
+    Chat avec
+    {% if app.user == conversation.userA %}
+        {{ conversation.userB.email }}
+    {% else %}
+        {{ conversation.userA.email }}
+    {% endif %}
 {% endblock %}
 
+{% block body %}
+<div class="d-flex flex-column" style="height: calc(100vh - 60px);">
+    <!-- En-tête de la conversation -->
+    <div class="bg-primary text-white p-3 border-bottom shadow-sm">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <a href="{{ path('app_messages') }}" class="btn btn-outline-light btn-sm me-3">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="avatar-circle bg-white text-primary me-3">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0">
+                        {% if app.user == conversation.userA %}
+                            {{ conversation.userB.email }}
+                        {% else %}
+                            {{ conversation.userA.email }}
+                        {% endif %}
+                    </h5>
+                    <small class="opacity-75">
+                        <i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i>
+                        En ligne
+                    </small>
+                </div>
+                <div class="ms-auto">
+                    <span class="badge bg-light text-primary">
+                        {{ conversation.messages|length }} message(s)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% block title %}
+    <!-- Zone des messages -->
+    <div class="flex-grow-1 overflow-auto bg-light" style="min-height: 0;">
+        <div class="container-fluid p-0">
+            <div id="messages"
+                 class="p-3"
+                 style="min-height: 100%; display: flex; flex-direction: column;"
+                 {{ turbo_stream_listen('conversations/'~conversation.id, 'default', {withCredentials:true}) }}>
 
+                {% if conversation.messages|length > 0 %}
+                    {% for message in conversation.messages %}
+                        {{ component('Message', { message: message }, { class: 'mb-2' }) }}
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-5 my-auto">
+                        <i class="fas fa-comments fa-3x text-muted mb-3"></i>
+                        <h6 class="text-muted">Aucun message pour le moment</h6>
+                        <p class="text-muted small">Commencez la conversation en envoyant un message !</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulaire de message fixé en bas -->
+    <div class="bg-white border-top shadow-lg">
+        <div class="container-fluid p-3">
+            <turbo-frame id="message_form">
+                {{ form_start(form, {'attr': {'class': 'd-flex align-items-end gap-2'}}) }}
+                    <div class="flex-grow-1">
+                        {{ form_widget(form.content, {
+                            'attr': {
+                                'class': 'form-control form-control-lg border-0 bg-light',
+                                'placeholder': 'Tapez votre message...',
+                                'rows': '1',
+                                'style': 'resize: none; border-radius: 25px;'
+                            }
+                        }) }}
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg rounded-circle" style="width: 50px; height: 50px;">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                {{ form_end(form) }}
+            </turbo-frame>
+        </div>
+    </div>
+</div>
+
+<style>
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+#messages {
+    scroll-behavior: smooth;
+}
+
+/* Auto-scroll vers le bas */
+#messages:after {
+    content: '';
+    display: block;
+    height: 1px;
+}
+
+/* Style pour le textarea qui grandit */
+textarea.form-control:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+/* Animation pour le bouton d'envoi */
+.btn-primary:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+</style>
+
+<script>
+// Auto-scroll vers le bas quand de nouveaux messages arrivent
+document.addEventListener('turbo:frame-load', function() {
+    const messagesContainer = document.getElementById('messages');
+    if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+});
+
+// Scroll au chargement initial
+document.addEventListener('DOMContentLoaded', function() {
+    const messagesContainer = document.getElementById('messages').parentElement;
+    if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+});
+</script>
 {% endblock %}
