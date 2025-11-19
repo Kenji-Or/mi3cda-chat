@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\ConversationRepository;
 use App\Repository\UserRepository;
+use App\Service\MercureJwtGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,7 +56,7 @@ final class MessageController extends AbstractController
     }
 
     #[Route('/conversation/{id}', name:"app_conversation")]
-    public function conversation(HubInterface $hub, Conversation $conversation, EntityManagerInterface $manager, Request $request):Response
+    public function conversation(MercureJwtGenerator $jwtGenerator ,HubInterface $hub, Conversation $conversation, EntityManagerInterface $manager, Request $request):Response
     {
         if(!$this->getUser()){return $this->redirectToRoute('app_login');}
 
@@ -78,7 +79,8 @@ final class MessageController extends AbstractController
                 topics: "conversations/".$conversation->getId(),
                 data: $this->renderView('message/stream.html.twig', [
                     'message'=>$message
-                ])
+                ]),
+                private: true
             );
 
             $hub->publish($update);
@@ -88,10 +90,16 @@ final class MessageController extends AbstractController
 
 
 
-        return $this->render("message/conversation.html.twig", [
+        $response = $this->render("message/conversation.html.twig", [
             "conversation"=>$conversation,
             "form"=>$form
         ]);
+
+        $jwt = $jwtGenerator->generate($this->getUser());
+        $hubUrl = $hub->getPublicUrl();
+        $response->headers->set(key: 'set-cookie', values: "mercureAuthorization=$jwt; Path=$hubUrl; HttpOnly");
+
+        return $response;
     }
 
     #[Route('/conversation-check/{id}', name: 'app_conversation_check')]

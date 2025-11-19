@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <div id="messages" {{ turbo_stream_listen('conversations/'~conversation.id) }}>
+    <div id="messages" {{ turbo_stream_listen('conversations/'~conversation.id, 'default', {withCredentials:true}) }}>
 
     {% for message in conversation.messages %}
 

@@ -9,15 +9,16 @@
 
     <h4>As A</h4>
     {% for conversation in convsA %}
-
+    <div>
         <a href="{{ path("app_conversation", {id:conversation.id}) }}">chat with {{ conversation.userB.email }}</a>
-
+    </div>
     {% endfor %}
     <h4>As B</h4>
     {% for conversation in convsB %}
 
+    <div>
         <a href="{{ path("app_conversation", {id:conversation.id}) }}">chat with {{ conversation.userA.email }}</a>
-
+    </div>
     {% endfor %}
 
     <h3>Start a new conversation</h3>
