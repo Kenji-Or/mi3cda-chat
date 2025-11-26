@@ -29,10 +29,6 @@
                             {{ conversation.userA.email }}
                         {% endif %}
                     </h5>
-                    <small class="opacity-75">
-                        <i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i>
-                        En ligne
-                    </small>
                 </div>
                 <div class="ms-auto">
                     <span class="badge bg-light text-primary">
@@ -99,6 +95,63 @@
     align-items: center;
     justify-content: center;
     font-size: 1rem;
+}
+/* Animation pour tous les messages */
+.message-bubble {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styles pour les messages - par défaut (messages des autres) */
+.message-item {
+    justify-content: flex-start;
+}
+
+.message-item .message-header {
+    display: block;
+}
+
+.message-item .message-content {
+    background: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 18px 18px 18px 5px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.message-item .message-time {
+    text-align: left;
+}
+
+/* Styles pour mes messages */
+.message-item[data-author-id="{{ app.user.id }}"] {
+    justify-content: flex-end;
+}
+
+.message-item[data-author-id="{{ app.user.id }}"] .message-header {
+    display: none;
+}
+
+.message-item[data-author-id="{{ app.user.id }}"] .message-content {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 18px 18px 5px 18px !important;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.message-item[data-author-id="{{ app.user.id }}"] .message-time {
+    text-align: right;
 }
 
 #messages {

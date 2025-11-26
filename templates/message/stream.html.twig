@@ -1,17 +1,15 @@
 {% block create %}
     <turbo-stream action="append" target="messages">
         <template>
-            <div id="{{ 'message_' ~ message.id }}" class="d-flex {{ app.user.id == message.author.id ? 'justify-content-end' : 'justify-content-start' }} mb-2">
-                <div class="message-bubble {{ app.user.id == message.author.id ? 'my-message' : 'other-message' }}" style="max-width: 70%; word-wrap: break-word;">
-                    {% if app.user.id != message.author.id %}
-                        <div class="message-header mb-1">
-                            <small class="text-muted fw-semibold">{{ message.author.email }}</small>
-                        </div>
-                    {% endif %}
-                    <div class="message-content p-3 rounded-3 {{ app.user.id == message.author.id ? 'bg-primary text-white' : 'bg-white border' }}">
+            <div id="{{ 'message_' ~ message.id }}" class="d-flex message-item mb-2" data-author-id="{{ message.author.id }}">
+                <div class="message-bubble" style="max-width: 70%; word-wrap: break-word;">
+                    <div class="message-header mb-1">
+                        <small class="text-muted fw-semibold">{{ message.author.email }}</small>
+                    </div>
+                    <div class="message-content p-3 rounded-3">
                         {{ message.content }}
                     </div>
-                    <div class="message-time mt-1 {{ app.user.id == message.author.id ? 'text-end' : 'text-start' }}">
+                    <div class="message-time mt-1">
                         <small class="text-muted" style="font-size: 0.75rem;">
                             <i class="fas fa-clock me-1"></i>
                             {{ message.createdAt ? message.createdAt|date('H:i') : 'Maintenant' }}
@@ -23,17 +21,6 @@
                 .message-bubble {
                     animation: fadeInUp 0.3s ease-out;
                 }
-                .my-message .message-content {
-                    border-radius: 18px 18px 5px 18px !important;
-                    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
-                    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
-                }
-                .other-message .message-content {
-                    border-radius: 18px 18px 18px 5px !important;
-                    background: #ffffff !important;
-                    border: 1px solid #e9ecef !important;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
                 @keyframes fadeInUp {
                     from {
                         opacity: 0;
@@ -43,33 +30,6 @@
                         opacity: 1;
                         transform: translateY(0);
                     }
-                }
-                .message-content {
-                    position: relative;
-                }
-                .my-message .message-content::after {
-                    content: '';
-                    position: absolute;
-                    bottom: 0;
-                    right: -8px;
-                    width: 0;
-                    height: 0;
-                    border: 8px solid transparent;
-                    border-top-color: #007bff;
-                    border-bottom: 0;
-                    transform: rotate(45deg);
-                }
-                .other-message .message-content::after {
-                    content: '';
-                    position: absolute;
-                    bottom: 0;
-                    left: -8px;
-                    width: 0;
-                    height: 0;
-                    border: 8px solid transparent;
-                    border-top-color: #ffffff;
-                    border-bottom: 0;
-                    transform: rotate(-45deg);
                 }
             </style>
         </template>
