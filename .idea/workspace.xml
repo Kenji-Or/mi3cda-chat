@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Add readme">
+    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="update style message + correction style pour turbo stream">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/components/Message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/Message.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/message/conversation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/conversation.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/message/stream.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/stream.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -211,8 +211,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PS-252.27397.112" />
-        <option value="bundled-php-predefined-a98d8de5180a-b35feea871ed-com.jetbrains.php.sharedIndexes-PS-252.27397.112" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-PS-252.28238.9" />
+        <option value="bundled-php-predefined-a98d8de5180a-58f58c5035b3-com.jetbrains.php.sharedIndexes-PS-252.28238.9" />
       </set>
     </attachedChunks>
   </component>
@@ -231,7 +231,8 @@
       <workItem from="1763503002869" duration="141000" />
       <workItem from="1763586524712" duration="5069000" />
       <workItem from="1763659321946" duration="848000" />
-      <workItem from="1764188265136" duration="5369000" />
+      <workItem from="1764188265136" duration="5462000" />
+      <workItem from="1764421889406" duration="1625000" />
     </task>
     <task id="LOCAL-00001" summary="add security part 1">
       <option name="closed" value="true" />
@@ -265,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763591522119</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update style message + correction style pour turbo stream">
+      <option name="closed" value="true" />
+      <created>1764193710973</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1764193710973</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +285,8 @@
     <MESSAGE value="config cors" />
     <MESSAGE value="Add bootstrap" />
     <MESSAGE value="Add readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add readme" />
+    <MESSAGE value="update style message + correction style pour turbo stream" />
+    <option name="LAST_COMMIT_MESSAGE" value="update style message + correction style pour turbo stream" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

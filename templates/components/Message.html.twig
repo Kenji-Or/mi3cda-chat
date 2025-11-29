@@ -9,7 +9,7 @@
         <div class="message-time mt-1">
             <small class="text-muted" style="font-size: 0.75rem;">
                 <i class="fas fa-clock me-1"></i>
-                {{ message.createdAt ? message.createdAt|date('H:i') : 'Maintenant' }}
+                {{ message.createdAt ? message.createdAt|date('d/m/Y H:i') : 'Maintenant' }}
             </small>
         </div>
     </div>
