@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="update style message + correction style pour turbo stream">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Ajout de la date d'envoi des messages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/Message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/Message.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/message/stream.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/stream.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MessageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Conversation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Conversation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ConversationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ConversationRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/message/conversation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/conversation.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/message/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +234,7 @@
       <workItem from="1763586524712" duration="5069000" />
       <workItem from="1763659321946" duration="848000" />
       <workItem from="1764188265136" duration="5462000" />
-      <workItem from="1764421889406" duration="1625000" />
+      <workItem from="1764421889406" duration="4316000" />
     </task>
     <task id="LOCAL-00001" summary="add security part 1">
       <option name="closed" value="true" />
@@ -274,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764193710973</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Ajout de la date d'envoi des messages">
+      <option name="closed" value="true" />
+      <created>1764423721801</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1764423721801</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +296,8 @@
     <MESSAGE value="Add bootstrap" />
     <MESSAGE value="Add readme" />
     <MESSAGE value="update style message + correction style pour turbo stream" />
-    <option name="LAST_COMMIT_MESSAGE" value="update style message + correction style pour turbo stream" />
+    <MESSAGE value="Ajout de la date d'envoi des messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la date d'envoi des messages" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

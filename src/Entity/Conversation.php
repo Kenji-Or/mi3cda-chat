@@ -107,4 +107,18 @@ class Conversation
 
         return $this;
     }
+
+    public function getLastMessage(): ?Message
+    {
+        if ($this->messages->isEmpty()) {
+            return null;
+        }
+
+        $messages = $this->messages->toArray();
+        usort($messages, function($a, $b) {
+            return $b->getCreatedAt() <=> $a->getCreatedAt();
+        });
+
+        return $messages[0];
+    }
 }

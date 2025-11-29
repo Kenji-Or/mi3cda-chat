@@ -20,15 +20,27 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MessageController extends AbstractController
 {
     #[Route('/', name: 'app_messages')]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, ConversationRepository $conversationRepository): Response
     {
         if(!$this->getUser())
         {
            return $this->redirectToRoute('app_login');
         }
 
-        $conversationsA = $this->getUser()->getConversationsAsUserA();
-        $conversationsB = $this->getUser()->getConversationsAsUserB();
+        // Récupérer toutes les conversations triées par dernier message
+        $allConversations = $conversationRepository->findAllUserConversationsOrderedByLastMessage($this->getUser());
+
+        // Séparer les conversations pour l'affichage (optionnel, pour garder la structure existante)
+        $conversationsA = [];
+        $conversationsB = [];
+
+        foreach ($allConversations as $conversation) {
+            if ($conversation->getUserA() === $this->getUser()) {
+                $conversationsA[] = $conversation;
+            } else {
+                $conversationsB[] = $conversation;
+            }
+        }
 
         // Récupérer tous les utilisateurs sauf l'utilisateur courant
         $allUsers = $userRepository->findAll();
@@ -49,6 +61,7 @@ final class MessageController extends AbstractController
 
         return $this->render('message/index.html.twig', [
             'controller_name' => 'MessageController',
+            'allConversations' => $allConversations,
             'convsA'=>$conversationsA,
             'convsB'=>$conversationsB,
             'otherUsers'=> $otherUsers
