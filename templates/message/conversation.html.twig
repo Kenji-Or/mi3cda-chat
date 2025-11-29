@@ -158,6 +158,11 @@
     scroll-behavior: smooth;
 }
 
+/* Scroll fluide pour le conteneur des messages */
+.overflow-auto {
+    scroll-behavior: smooth;
+}
+
 /* Auto-scroll vers le bas */
 #messages:after {
     content: '';
@@ -179,20 +184,64 @@ textarea.form-control:focus {
 </style>
 
 <script>
-// Auto-scroll vers le bas quand de nouveaux messages arrivent
-document.addEventListener('turbo:frame-load', function() {
-    const messagesContainer = document.getElementById('messages');
-    if (messagesContainer) {
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+function scrollToBottom() {
+    // Le conteneur qui scroll est celui avec overflow-auto
+    const scrollContainer = document.querySelector('.overflow-auto');
+    if (scrollContainer) {
+        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    }
+}
+
+// Auto-scroll vers le bas quand de nouveaux messages arrivent via Turbo
+document.addEventListener('turbo:frame-load', function(event) {
+    if (event.target.id === 'message_form' || event.target.closest('#messages')) {
+        setTimeout(scrollToBottom, 100);
     }
 });
 
-// Scroll au chargement initial
+// Scroll au chargement initial de la page
 document.addEventListener('DOMContentLoaded', function() {
-    const messagesContainer = document.getElementById('messages').parentElement;
-    if (messagesContainer) {
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    setTimeout(scrollToBottom, 100);
+});
+
+// Scroll quand Turbo charge la page
+document.addEventListener('turbo:load', function() {
+    setTimeout(scrollToBottom, 100);
+});
+
+// Scroll quand un nouveau message arrive via Mercure/Turbo Stream
+document.addEventListener('turbo:before-stream-render', function() {
+    setTimeout(scrollToBottom, 100);
+});
+
+// Scroll après l'envoi d'un message
+document.addEventListener('turbo:submit-end', function(event) {
+    if (event.target.closest('#message_form')) {
+        setTimeout(scrollToBottom, 200);
     }
 });
+
+// Initialiser l'observer quand le DOM est prêt
+function initMessageObserver() {
+    const messagesContainer = document.getElementById('messages');
+    if (messagesContainer) {
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    setTimeout(scrollToBottom, 50);
+                }
+            });
+        });
+
+        observer.observe(messagesContainer, {
+            childList: true,
+            subtree: true
+        });
+    }
+}
+
+// Initialiser l'observer au chargement
+document.addEventListener('DOMContentLoaded', initMessageObserver);
+document.addEventListener('turbo:load', initMessageObserver);
 </script>
 {% endblock %}
