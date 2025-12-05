@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Ajout de la date d'envoi des messages">
+    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Ajout du scroll auto dans les conversations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MessageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Conversation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Conversation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ConversationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ConversationRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/message/conversation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/conversation.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/message/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +231,8 @@
       <workItem from="1763586524712" duration="5069000" />
       <workItem from="1763659321946" duration="848000" />
       <workItem from="1764188265136" duration="5462000" />
-      <workItem from="1764421889406" duration="4316000" />
+      <workItem from="1764421889406" duration="5778000" />
+      <workItem from="1764954233606" duration="554000" />
     </task>
     <task id="LOCAL-00001" summary="add security part 1">
       <option name="closed" value="true" />
@@ -284,7 +282,23 @@
       <option name="project" value="LOCAL" />
       <updated>1764423721801</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ajout trie des conversations par dernier message envoyé">
+      <option name="closed" value="true" />
+      <created>1764426641254</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1764426641254</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Ajout du scroll auto dans les conversations">
+      <option name="closed" value="true" />
+      <created>1764426673846</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1764426673846</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +311,9 @@
     <MESSAGE value="Add readme" />
     <MESSAGE value="update style message + correction style pour turbo stream" />
     <MESSAGE value="Ajout de la date d'envoi des messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la date d'envoi des messages" />
+    <MESSAGE value="Ajout trie des conversations par dernier message envoyé" />
+    <MESSAGE value="Ajout du scroll auto dans les conversations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du scroll auto dans les conversations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

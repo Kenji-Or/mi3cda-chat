@@ -121,4 +121,16 @@ class Conversation
 
         return $messages[0];
     }
+
+    /**
+     * Vérifie si un utilisateur fait partie de cette conversation
+     */
+    public function hasParticipant(?User $user): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        return $this->userA === $user || $this->userB === $user;
+    }
 }

@@ -73,6 +73,10 @@ final class MessageController extends AbstractController
     {
         if(!$this->getUser()){return $this->redirectToRoute('app_login');}
 
+        // Vérifier que l'utilisateur fait partie de la conversation
+        if (!$conversation->hasParticipant($this->getUser())) {
+            return $this->redirectToRoute('app_messages');
+        }
 
         $message = new Message();
         $form = $this->createForm(MessageType::class, $message);
