@@ -3,13 +3,19 @@
 {% block title %}
     Chat avec
     {% if app.user == conversation.userA %}
-        {{ conversation.userB.email }}
+        {{ conversation.userB.fullName ?: conversation.userB.email }}
     {% else %}
-        {{ conversation.userA.email }}
+        {{ conversation.userA.fullName ?: conversation.userA.email }}
     {% endif %}
 {% endblock %}
 
 {% block body %}
+{% if app.user == conversation.userA %}
+    {% set otherUser = conversation.userB %}
+{% else %}
+    {% set otherUser = conversation.userA %}
+{% endif %}
+
 <div class="d-flex flex-column" style="height: calc(100vh - 60px);">
     <!-- En-tête de la conversation -->
     <div class="bg-primary text-white p-3 border-bottom shadow-sm">
@@ -23,17 +29,8 @@
                 </div>
                 <div>
                     <h5 class="mb-0">
-                        {% if app.user == conversation.userA %}
-                            {{ conversation.userB.email }}
-                        {% else %}
-                            {{ conversation.userA.email }}
-                        {% endif %}
+                        {{ otherUser.fullName ?: otherUser.email }}
                     </h5>
-                </div>
-                <div class="ms-auto">
-                    <span class="badge bg-light text-primary">
-                        {{ conversation.messages|length }} message(s)
-                    </span>
                 </div>
             </div>
         </div>

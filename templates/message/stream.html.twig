@@ -3,9 +3,6 @@
         <template>
             <div id="{{ 'message_' ~ message.id }}" class="d-flex message-item mb-2" data-author-id="{{ message.author.id }}">
                 <div class="message-bubble" style="max-width: 70%; word-wrap: break-word;">
-                    <div class="message-header mb-1">
-                        <small class="text-muted fw-semibold">{{ message.author.email }}</small>
-                    </div>
                     <div class="message-content p-3 rounded-3">
                         {{ message.content }}
                     </div>

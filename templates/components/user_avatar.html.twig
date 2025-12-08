@@ -1,0 +1,15 @@
+{% if user.fullName %}
+    {% set displayName = user.fullName %}
+    {% set initials = (user.firstName|first|upper) ~ (user.lastName|first|upper) %}
+{% else %}
+    {% set displayName = user.email %}
+    {% set initials = user.email|first|upper %}
+{% endif %}
+
+<div class="avatar-circle {{ class|default('bg-primary text-white') }}" title="{{ displayName }}">
+    {% if showInitials|default(false) and initials %}
+        {{ initials }}
+    {% else %}
+        <i class="fas fa-user"></i>
+    {% endif %}
+</div>

@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Ajout du scroll auto dans les conversations">
+    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Ajout sécurité, pour autoriser seulement les participants à accéder, lire et envoyer des messages dans une conversation">
+      <change afterPath="$PROJECT_DIR$/PROFILE_FEATURES.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/components.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventListener/LoginSuccessListener.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/ProfileType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/components/user_avatar.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/profile/change_password.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/profile/edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/profile/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Conversation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Conversation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/components/Message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/Message.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/message/conversation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/conversation.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/message/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/message/stream.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/stream.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar/nav.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar/nav.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +251,8 @@
       <workItem from="1763659321946" duration="848000" />
       <workItem from="1764188265136" duration="5462000" />
       <workItem from="1764421889406" duration="5778000" />
-      <workItem from="1764954233606" duration="554000" />
+      <workItem from="1764954233606" duration="1138000" />
+      <workItem from="1765212780192" duration="3824000" />
     </task>
     <task id="LOCAL-00001" summary="add security part 1">
       <option name="closed" value="true" />
@@ -298,7 +318,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764426673846</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Ajout sécurité, pour autoriser seulement les participants à accéder, lire et envoyer des messages dans une conversation">
+      <option name="closed" value="true" />
+      <created>1764955065210</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764955065210</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +341,8 @@
     <MESSAGE value="Ajout de la date d'envoi des messages" />
     <MESSAGE value="Ajout trie des conversations par dernier message envoyé" />
     <MESSAGE value="Ajout du scroll auto dans les conversations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout du scroll auto dans les conversations" />
+    <MESSAGE value="Ajout sécurité, pour autoriser seulement les participants à accéder, lire et envoyer des messages dans une conversation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout sécurité, pour autoriser seulement les participants à accéder, lire et envoyer des messages dans une conversation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
