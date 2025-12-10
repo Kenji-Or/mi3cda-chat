@@ -17,6 +17,7 @@ use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 final class MessageController extends AbstractController
 {
     #[Route('/', name: 'app_messages')]
@@ -176,4 +177,99 @@ final class MessageController extends AbstractController
             "id"=>$idConversation,
         ]);
     }
+
+    /**
+     * Modification d'un message (édition inline)
+     */
+    #[Route('/message/edit/{id}', name: 'app_message_edit', methods: ['POST'])]
+    public function editMessage(Message $message, Request $request, EntityManagerInterface $manager): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Vérifier que l'utilisateur est l'auteur du message
+        if ($message->getAuthor() !== $user) {
+            $this->addFlash('error', 'Vous ne pouvez modifier que vos propres messages.');
+            return $this->redirectToRoute('app_conversation', ['id' => $message->getConversation()->getId()]);
+        }
+
+        // Vérifier que l'utilisateur fait partie de la conversation
+        if (!$message->getConversation()->hasParticipant($user)) {
+            return $this->redirectToRoute('app_messages');
+        }
+
+        // Vérification CSRF
+        if (!$this->isCsrfTokenValid('edit_message', $request->request->get('_token'))) {
+            $this->addFlash('error', 'Token invalide.');
+            return $this->redirectToRoute('app_conversation', ['id' => $message->getConversation()->getId()]);
+        }
+
+        // Récupérer le nouveau contenu depuis le formulaire
+        $newContent = $request->request->get('content');
+
+        if (!empty(trim($newContent))) {
+            $message->setContent($newContent);
+            $message->setUpdatedAt(new \DateTime());
+            $manager->flush();
+        }
+
+        return $this->redirectToRoute('app_conversation', ['id' => $message->getConversation()->getId()]);
+    }
+
+
+    /**
+     * Suppression d'un message avec mise à jour temps réel
+     */
+    #[Route('/message/delete/{id}', name: 'app_message_delete', methods: ['POST', 'DELETE'])]
+    public function deleteMessage(Message $message, Request $request, EntityManagerInterface $manager, HubInterface $hub): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Vérifier que l'utilisateur est l'auteur du message
+        if ($message->getAuthor() !== $user) {
+            $this->addFlash('error', 'Vous ne pouvez supprimer que vos propres messages.');
+            return $this->redirectToRoute('app_conversation', ['id' => $message->getConversation()->getId()]);
+        }
+
+        // Vérifier que l'utilisateur fait partie de la conversation
+        if (!$message->getConversation()->hasParticipant($user)) {
+            return $this->redirectToRoute('app_messages');
+        }
+
+        // Vérification CSRF simple
+        if (!$this->isCsrfTokenValid('delete_message_'.$message->getId(), $request->request->get('_token'))) {
+            $this->addFlash('error', 'Token invalide.');
+            return $this->redirectToRoute('app_conversation', ['id' => $message->getConversation()->getId()]);
+        }
+
+        $conversationId = $message->getConversation()->getId();
+        $messageId = $message->getId();
+
+        $manager->remove($message);
+        $manager->flush();
+
+        // Publier la suppression via Mercure
+        $update = new Update(
+            topics: "conversations/".$conversationId,
+            data: $this->renderView('message/delete_stream.html.twig', [
+                'messageId' => $messageId
+            ]),
+            private: true
+        );
+
+        $hub->publish($update);
+
+        return $this->redirectToRoute('app_conversation', ['id' => $conversationId]);
+    }
+
+
 }

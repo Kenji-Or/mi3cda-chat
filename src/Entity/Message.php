@@ -24,6 +24,9 @@ class Message
     #[ORM\Column]
     private ?\DateTime $createdAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $updatedAt = null;
+
     #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Conversation $conversation = null;
@@ -79,5 +82,22 @@ class Message
         $this->conversation = $conversation;
 
         return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTime $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function isEdited(): bool
+    {
+        return $this->updatedAt !== null;
     }
 }

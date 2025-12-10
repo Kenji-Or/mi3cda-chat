@@ -93,7 +93,7 @@
     justify-content: center;
     font-size: 1rem;
 }
-/* Animation pour tous les messages */
+/* Animation pour les nouveaux messages */
 .message-bubble {
     animation: fadeInUp 0.3s ease-out;
 }
@@ -109,13 +109,9 @@
     }
 }
 
-/* Styles pour les messages - par défaut (messages des autres) */
+/* Styles pour les messages - défaut (messages des autres) */
 .message-item {
     justify-content: flex-start;
-}
-
-.message-item .message-header {
-    display: block;
 }
 
 .message-item .message-content {
@@ -123,20 +119,11 @@
     border: 1px solid #e9ecef !important;
     border-radius: 18px 18px 18px 5px !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-.message-item .message-time {
-    text-align: left;
 }
 
 /* Styles pour mes messages */
 .message-item[data-author-id="{{ app.user.id }}"] {
     justify-content: flex-end;
-}
-
-.message-item[data-author-id="{{ app.user.id }}"] .message-header {
-    display: none;
 }
 
 .message-item[data-author-id="{{ app.user.id }}"] .message-content {
@@ -147,36 +134,29 @@
     box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
 }
 
-.message-item[data-author-id="{{ app.user.id }}"] .message-time {
-    text-align: right;
-}
-
-#messages {
+/* Scroll fluide */
+#messages, .overflow-auto {
     scroll-behavior: smooth;
 }
 
-/* Scroll fluide pour le conteneur des messages */
-.overflow-auto {
-    scroll-behavior: smooth;
+/* Actions de messages (édition/suppression) */
+.message-actions {
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
-/* Auto-scroll vers le bas */
-#messages:after {
-    content: '';
-    display: block;
-    height: 1px;
+.message-item:hover .message-actions {
+    opacity: 1;
 }
 
-/* Style pour le textarea qui grandit */
-textarea.form-control:focus {
-    box-shadow: none;
-    border-color: transparent;
+.message-actions .btn {
+    border: none;
+    background: transparent;
 }
 
-/* Animation pour le bouton d'envoi */
-.btn-primary:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
+.message-actions .btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
 }
 </style>
 
@@ -211,14 +191,14 @@ document.addEventListener('turbo:before-stream-render', function() {
     setTimeout(scrollToBottom, 100);
 });
 
-// Scroll après l'envoi d'un message
+// Auto-scroll après envoi de message
 document.addEventListener('turbo:submit-end', function(event) {
     if (event.target.closest('#message_form')) {
         setTimeout(scrollToBottom, 200);
     }
 });
 
-// Initialiser l'observer quand le DOM est prêt
+// Observer pour auto-scroll quand nouveaux messages arrivent
 function initMessageObserver() {
     const messagesContainer = document.getElementById('messages');
     if (messagesContainer) {
@@ -237,8 +217,37 @@ function initMessageObserver() {
     }
 }
 
-// Initialiser l'observer au chargement
+// Initialiser l'observer
 document.addEventListener('DOMContentLoaded', initMessageObserver);
 document.addEventListener('turbo:load', initMessageObserver);
+
+// Fonction simple pour passer en mode édition
+function editMessage(messageId) {
+    const messageDiv = document.getElementById('message-' + messageId);
+    const displayDiv = messageDiv.querySelector('.message-content-display');
+    const editDiv = messageDiv.querySelector('.message-edit-form');
+    const textarea = editDiv.querySelector('textarea');
+
+    // Cacher l'affichage normal et montrer le formulaire d'édition
+    displayDiv.style.display = 'none';
+    editDiv.style.display = 'block';
+
+    // Focus sur le textarea
+    textarea.focus();
+    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+}
+
+// Fonction pour annuler l'édition
+function cancelEdit(messageId) {
+    const messageDiv = document.getElementById('message-' + messageId);
+    const displayDiv = messageDiv.querySelector('.message-content-display');
+    const editDiv = messageDiv.querySelector('.message-edit-form');
+
+    // Remettre l'affichage normal
+    displayDiv.style.display = 'block';
+    editDiv.style.display = 'none';
+}
+
+
 </script>
 {% endblock %}

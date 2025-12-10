@@ -1,13 +1,61 @@
-<div{{ attributes }} class="d-flex message-item mb-2" data-author-id="{{ message.author.id }}">
-    <div class="message-bubble" style="max-width: 70%; word-wrap: break-word;">
-        <div class="message-content p-3 rounded-3">
-            {{ message.content }}
+<div{{ attributes }} class="d-flex message-item mb-2" data-author-id="{{ message.author.id }}" id="message-{{ message.id }}">
+    <div class="message-bubble position-relative" style="max-width: 70%; word-wrap: break-word;">
+
+        <!-- Contenu normal du message -->
+        <div class="message-content-display">
+            <div class="message-content p-3 rounded-3">
+                <span class="message-text">{{ message.content }}</span>
+                {% if message.isEdited %}
+                    <small class="text-muted d-block mt-1" style="font-size: 0.7rem;">
+                        <i class="fas fa-edit me-1"></i>Modifié
+                    </small>
+                {% endif %}
+            </div>
         </div>
-        <div class="message-time mt-1">
+
+        <!-- Formulaire d'édition (caché par défaut) -->
+        <div class="message-edit-form" style="display: none;">
+            <form action="{{ path('app_message_edit', {'id': message.id}) }}" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token('edit_message') }}">
+                <div class="p-2">
+                    <label for="edit-content-{{ message.id }}" class="visually-hidden">Modifier le message</label>
+                    <textarea id="edit-content-{{ message.id }}" name="content" class="form-control mb-2" rows="2" required>{{ message.content }}</textarea>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-sm btn-success">
+                            <i class="fas fa-check"></i> Valider
+                        </button>
+                        <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit({{ message.id }})">
+                            <i class="fas fa-times"></i> Annuler
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="message-time mt-1 d-flex justify-content-between align-items-center">
             <small class="text-muted" style="font-size: 0.75rem;">
                 <i class="fas fa-clock me-1"></i>
-                {{ message.createdAt ? message.createdAt|date('d/m/Y H:i') : 'Maintenant' }}
+                {% if message.isEdited %}
+                    {{ message.updatedAt|date('d/m/Y H:i') }}
+                {% else %}
+                    {{ message.createdAt ? message.createdAt|date('d/m/Y H:i') : 'Maintenant' }}
+                {% endif %}
             </small>
+
+            {% if app.user and message.author.id == app.user.id %}
+                <div class="message-actions">
+                    <button class="btn btn-sm btn-link text-muted p-1" onclick="editMessage({{ message.id }})" title="Modifier">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <form method="post" action="{{ path('app_message_delete', {'id': message.id}) }}" style="display: inline;"
+                          onsubmit="return confirm('Supprimer ce message ?')">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete_message_' ~ message.id) }}">
+                        <button type="submit" class="btn btn-sm btn-link text-danger p-1" title="Supprimer">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
