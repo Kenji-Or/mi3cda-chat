@@ -16,7 +16,6 @@ mi3cda-chat est une application web de messagerie instantanée développée avec
   - Affichage des dates de création et modification
 - **Sécurité avancée** :
   - Contrôle d'accès aux conversations (seuls les participants peuvent y accéder)
-  - Messages flash informatifs pour les erreurs et succès
   - Validation des formulaires côté client et serveur
 - **Liste des utilisateurs** et démarrage de nouvelles conversations
 - **Dashboard de conversations** : affichage des conversations existantes, navigation fluide
