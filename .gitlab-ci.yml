@@ -63,5 +63,5 @@ deploy:production:
         name: production
         url: https://app-chat.kenji-o.site
     only:
-        - main
+        - master
     when: manual
