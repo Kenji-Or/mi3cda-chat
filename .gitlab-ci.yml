@@ -1,0 +1,67 @@
+stages:
+    - deploy
+
+variables:
+    PROJECT_PATH: /home/kenji/docker/app_chat/mi3cda-chat
+    DEPLOYMENT_TAG: deploiement_prod
+
+# ----------------------------------------------------
+# Étape : Déploiement (utilise le démon Docker de l'hôte)
+# ----------------------------------------------------
+deploy:production:
+    stage: deploy
+    image: docker:20.10.16-dind # Image avec le client Docker
+    tags:
+        - $DEPLOYMENT_TAG
+    script:
+        - echo "Déploiement local démarré sur l'hôte $PROJECT_PATH"
+
+        # 1. Copie des artefacts et des fichiers de code source
+        # Le répertoire de travail actuel du Runner est copié vers le répertoire de production
+        - cp -r ./* $PROJECT_PATH/
+
+        - rm -f $PROJECT_PATH/compose.override.yaml
+        - rm -f $PROJECT_PATH/compose.dev.yaml
+
+        # 2. Réécriture du fichier .env (PAS D'INDENTATION DANS LE HEREDOC !)
+        - |
+          cat > $PROJECT_PATH/.env << EOF
+          APP_ENV=prod
+          APP_SECRET=$APP_SECRET
+          APP_DEBUG=0
+          ASSET_URL=https://app-chat.kenji-o.site
+          POSTGRES_VERSION=16
+          POSTGRES_DB=$POSTGRES_DB
+          POSTGRES_USER=$POSTGRES_USER
+          POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+          DATABASE_URL="postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@database:5432/$POSTGRES_DB?serverVersion=16&charset=utf8"
+          MERCURE_URL=http://mercure:80/.well-known/mercure
+          MERCURE_PUBLIC_URL=https://app-chat.kenji-o.site/.well-known/mercure
+          MERCURE_JWT_SECRET=$MERCURE_JWT_SECRET
+          MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0
+          TRUSTED_PROXIES=127.0.0.1,REMOTE_ADDR,172.16.0.0/12
+          TRUSTED_HOSTS='^app-chat\.kenji-o\.site$'
+          DEFAULT_URI=https://app-chat.kenji-o.site
+          CORS_ALLOW_ORIGIN='^https?://app-chat\.kenji-o\.site$'
+          EOF
+
+        # 3. Exécution des commandes Docker Compose
+        - cd $PROJECT_PATH
+        - echo "Arrêt des services actuels..."
+        - docker compose down
+        - echo "Reconstruction et démarrage des services..."
+        - docker compose up -d --build
+
+        # 4. Commandes post-déploiement
+        - sleep 10
+        - echo "Exécution des migrations..."
+        - docker compose exec -T app php bin/console doctrine:migrations:migrate --no-interaction
+        - echo "Vidage du cache..."
+        - docker compose exec -T app php bin/console cache:clear --env=prod
+        - echo "Déploiement local terminé !"
+    environment:
+        name: production
+        url: https://app-chat.kenji-o.site
+    only:
+        - main
+    when: manual

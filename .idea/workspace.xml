@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="Ajout des fonctions modifier message et supprimer message">
-      <change beforePath="$PROJECT_DIR$/PROFILE_FEATURES.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="update readme">
+      <change afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compose.dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f7b0fe8b-9f15-4514-8423-ea61da776408.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f7b0fe8b-9f15-4514-8423-ea61da776408.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +197,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/kenji/Documents/mi3cda/ia_local&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -209,8 +217,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-PS-252.28238.9" />
-        <option value="bundled-php-predefined-a98d8de5180a-58f58c5035b3-com.jetbrains.php.sharedIndexes-PS-252.28238.9" />
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-PS-253.28294.345" />
+        <option value="bundled-php-predefined-a98d8de5180a-09080813851e-com.jetbrains.php.sharedIndexes-PS-253.28294.345" />
       </set>
     </attachedChunks>
   </component>
@@ -233,7 +241,12 @@
       <workItem from="1764421889406" duration="5778000" />
       <workItem from="1764954233606" duration="1138000" />
       <workItem from="1765212780192" duration="4259000" />
-      <workItem from="1765390730101" duration="2693000" />
+      <workItem from="1765390730101" duration="2764000" />
+      <workItem from="1765396203128" duration="67000" />
+      <workItem from="1765562590387" duration="6355000" />
+      <workItem from="1765644433349" duration="693000" />
+      <workItem from="1765704554795" duration="4769000" />
+      <workItem from="1765719500657" duration="12737000" />
     </task>
     <task id="LOCAL-00001" summary="add security part 1">
       <option name="closed" value="true" />
@@ -323,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765392758398</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update readme">
+      <option name="closed" value="true" />
+      <created>1765396120148</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1765396120148</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,7 +362,8 @@
     <MESSAGE value="Ajout sécurité, pour autoriser seulement les participants à accéder, lire et envoyer des messages dans une conversation" />
     <MESSAGE value="ajout de la gestion de son profile" />
     <MESSAGE value="Ajout des fonctions modifier message et supprimer message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout des fonctions modifier message et supprimer message" />
+    <MESSAGE value="update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
