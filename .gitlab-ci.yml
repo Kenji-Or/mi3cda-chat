@@ -58,7 +58,7 @@ deploy:production:
         # 4. Commandes post-déploiement
         - sleep 10
         - echo "Exécution des migrations..."
-        - docker compose exec -T app php bin/console doctrine:migrations:version --all --add
+        - docker compose exec -T app php bin/console doctrine:migrations:migrate --no-interaction
         - echo "Vidage du cache..."
         - docker compose exec -T app php bin/console cache:clear --env=prod
         - echo "Déploiement local terminé !"
