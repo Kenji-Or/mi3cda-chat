@@ -13,6 +13,9 @@ deploy:production:
     image: docker:24.0.5-cli # Image avec le client Docker
     tags:
         - $DEPLOYMENT_TAG
+    variables:
+        # Ceci force le client Docker à utiliser une version d'API compatible (1.44 est le minimum requis)
+        DOCKER_API_VERSION: "1.44"
     script:
         - echo "Déploiement local démarré sur l'hôte $PROJECT_PATH"
 
