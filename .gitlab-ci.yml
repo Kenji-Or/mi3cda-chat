@@ -10,7 +10,7 @@ variables:
 # ----------------------------------------------------
 deploy:production:
     stage: deploy
-    image: docker:20.10.16-dind # Image avec le client Docker
+    image: docker:24.0.5-cli # Image avec le client Docker
     tags:
         - $DEPLOYMENT_TAG
     script:
