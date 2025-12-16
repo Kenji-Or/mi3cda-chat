@@ -70,11 +70,10 @@
                                     </div>
                                     <div class="text-end">
                                         {% if conversation.lastMessage %}
-                                            <small class="text-muted d-block">
-                                                {{ conversation.lastMessage.createdAt|date('d/m/Y') }}
-                                            </small>
-                                            <small class="text-muted">
-                                                {{ conversation.lastMessage.createdAt|date('H:i') }}
+                                            <small class="text-muted d-block timestamp"
+                                                   data-timestamp="{{ conversation.lastMessage.createdAt.timestamp }}"
+                                                   >
+                                                <span class="time-display">{{ conversation.lastMessage.createdAt|date('d/m/Y') }}</span>
                                             </small>
                                         {% endif %}
                                         <i class="fas fa-chevron-right text-muted mt-1"></i>

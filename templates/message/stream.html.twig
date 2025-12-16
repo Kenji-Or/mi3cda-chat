@@ -7,9 +7,13 @@
                         {{ message.content }}
                     </div>
                     <div class="message-time mt-1">
-                        <small class="text-muted" style="font-size: 0.75rem;">
+                        <small class="text-muted timestamp" style="font-size: 0.75rem;"
+                               data-timestamp="{{ message.createdAt ? message.createdAt.timestamp : 'now' }}"
+                              >
                             <i class="fas fa-clock me-1"></i>
-                            {{ message.createdAt ? message.createdAt|date('d/m/Y H:i') : 'Maintenant' }}
+                            <span class="time-display">
+                                {{ message.createdAt ? message.createdAt|date('d/m/Y H:i') : 'Maintenant' }}
+                            </span>
                         </small>
                     </div>
                 </div>
@@ -29,6 +33,14 @@
                     }
                 }
             </style>
+            <script>
+                // Convertir les timestamps des nouveaux messages
+                setTimeout(() => {
+                    if (window.convertTimestampsToLocal) {
+                        window.convertTimestampsToLocal();
+                    }
+                }, 100);
+            </script>
         </template>
     </turbo-stream>
 {% endblock %}

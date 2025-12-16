@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d705dc4-fd6d-4a96-b582-8ce121bc9ce8" name="Changes" comment="update readme">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/components/Message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/Message.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/message/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/message/stream.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/message/stream.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +242,8 @@
       <workItem from="1765562590387" duration="6355000" />
       <workItem from="1765644433349" duration="693000" />
       <workItem from="1765704554795" duration="4769000" />
-      <workItem from="1765719500657" duration="15066000" />
+      <workItem from="1765719500657" duration="15619000" />
+      <workItem from="1765873142717" duration="5019000" />
     </task>
     <task id="LOCAL-00001" summary="add security part 1">
       <option name="closed" value="true" />
